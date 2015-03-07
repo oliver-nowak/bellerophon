@@ -1,3 +1,5 @@
+require 'open3'
+
 class ClassifyEmailJob < ActiveJob::Base
   queue_as :default
 
