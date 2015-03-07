@@ -4,13 +4,13 @@ class CreateMessages < ActiveRecord::Migration
 
       t.timestamps null: false
 
-      t.column :hash,             :string,    null: false, index: true
-      t.column :from,             :string,    null: false
-      t.column :to,               :string,    null: false
-      t.column :subject,          :string,    null: false
-      t.column :date,             :datetime,  null: false
+      t.column :from,             :string,    null: true, index: true
+      t.column :to,               :string,    null: true, index: true
+      t.column :subject,          :string,    null: true
+      t.column :date,             :datetime,  null: true, index: true
       t.column :document,         :text,      null: false
-      t.column :spam_probability, :float,     null: false, index: true
+      t.column :spam_probability, :float,     null: true, index: true
+      t.column :md5,              :string,    null: false, index: true
 
     end
   end
