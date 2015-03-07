@@ -6,12 +6,11 @@ class ClassifyEmailJobJob < ActiveJob::Base
     is_spam = false
 
     result, err, s= Open3.capture3(cmd, stdin_data: record.document)
-    logger.info result
 
     if result.include? 'spam'
       is_spam = true
     end
-    
+
     record.update(is_spam: is_spam)
 
   end
