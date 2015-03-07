@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +26,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = Message.new(document: message_params['document'], md5: Digest::MD5.hexdigest(document))
 
     respond_to do |format|
       if @message.save

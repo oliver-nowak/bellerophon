@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307143833) do
+ActiveRecord::Schema.define(version: 20150307140730) do
 
   create_table "messages", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "document_guid",    limit: 255,   null: false
-    t.string   "from",             limit: 255,   null: false
-    t.string   "to",               limit: 255,   null: false
-    t.string   "subject",          limit: 255,   null: false
-    t.datetime "date",                           null: false
+    t.string   "from",             limit: 255
+    t.string   "to",               limit: 255
+    t.string   "subject",          limit: 255
+    t.datetime "date"
     t.text     "document",         limit: 65535, null: false
-    t.float    "spam_probability", limit: 24,    null: false
+    t.float    "spam_probability", limit: 24
+    t.string   "md5",              limit: 255,   null: false
   end
 
-  add_index "messages", ["document_guid"], name: "index_messages_on_document_guid", using: :btree
+  add_index "messages", ["date"], name: "index_messages_on_date", using: :btree
+  add_index "messages", ["from"], name: "index_messages_on_from", using: :btree
+  add_index "messages", ["md5"], name: "index_messages_on_md5", using: :btree
   add_index "messages", ["spam_probability"], name: "index_messages_on_spam_probability", using: :btree
+  add_index "messages", ["to"], name: "index_messages_on_to", using: :btree
 
 end
