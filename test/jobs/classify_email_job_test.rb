@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ClassifyEmailJobJobTest < ActiveJob::TestCase
+class ClassifyEmailJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

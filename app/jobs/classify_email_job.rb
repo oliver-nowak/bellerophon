@@ -1,4 +1,4 @@
-class ClassifyEmailJobJob < ActiveJob::Base
+class ClassifyEmailJob < ActiveJob::Base
   queue_as :default
 
   def perform(record)
