@@ -14,21 +14,12 @@
 ActiveRecord::Schema.define(version: 20150307140730) do
 
   create_table "messages", force: :cascade do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "from",             limit: 255
-    t.string   "to",               limit: 255
-    t.string   "subject",          limit: 255
-    t.datetime "date"
-    t.text     "document",         limit: 65535, null: false
-    t.float    "spam_probability", limit: 24
-    t.string   "md5",              limit: 255,   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.text     "document",   limit: 65535,                 null: false
+    t.boolean  "is_spam",    limit: 1,     default: false
   end
 
-  add_index "messages", ["date"], name: "index_messages_on_date", using: :btree
-  add_index "messages", ["from"], name: "index_messages_on_from", using: :btree
-  add_index "messages", ["md5"], name: "index_messages_on_md5", using: :btree
-  add_index "messages", ["spam_probability"], name: "index_messages_on_spam_probability", using: :btree
-  add_index "messages", ["to"], name: "index_messages_on_to", using: :btree
+  add_index "messages", ["is_spam"], name: "index_messages_on_is_spam", using: :btree
 
 end

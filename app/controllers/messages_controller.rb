@@ -1,4 +1,4 @@
-require 'digest/md5'
+require 'open3'
 
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
@@ -26,7 +26,19 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(document: message_params['document'], md5: Digest::MD5.hexdigest(document))
+
+    document = message_params['document']
+    cmd = 'python ./lib/tasks/classify.py'
+    is_spam = false
+
+    result, err, s= Open3.capture3(cmd, stdin_data: document)
+    logger.info result
+
+    if result.include? 'spam'
+      is_spam = true
+    end
+
+    @message = Message.new(document: document, is_spam: is_spam)
 
     respond_to do |format|
       if @message.save
