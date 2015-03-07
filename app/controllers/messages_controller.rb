@@ -26,22 +26,13 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-
-    document = message_params['document']
-    cmd = 'python ./lib/tasks/classify.py'
-    is_spam = false
-
-    result, err, s= Open3.capture3(cmd, stdin_data: document)
-    logger.info result
-
-    if result.include? 'spam'
-      is_spam = true
-    end
-
-    @message = Message.new(document: document, is_spam: is_spam)
+    @message = Message.new(document: message_params['document'])
 
     respond_to do |format|
       if @message.save
+
+        ClassifyEmailJobJob.perform_later @message
+
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
