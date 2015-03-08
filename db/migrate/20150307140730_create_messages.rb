@@ -5,7 +5,7 @@ class CreateMessages < ActiveRecord::Migration
       t.timestamps null: false
 
       t.column :document,         :text,      null: false
-      t.column :is_spam,          :boolean,   null: true,   index: true, default: false
+      t.column :is_spam,          :boolean,   null: true,   index: true
 
     end
   end
