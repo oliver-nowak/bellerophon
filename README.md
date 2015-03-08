@@ -12,6 +12,8 @@ spam email filtering MVP
 
 ##TODO / Issues
 - Needs nicer looking UI (bootstrap)
+- Python code needs to be PEP-08 compliant
+- Tests!
 - API needs improvement, depending on user requirements
 - Would consider swapping out MySQL for MongoDB depending on user requirements
 - Refactor job scheduler / background processor in order to decouple classification service from API service
@@ -21,4 +23,7 @@ spam email filtering MVP
 - Classification model training would occur daily, updated at lowest usage point in the day, or concurrently during application deployment
 - Current model is trained using all available data - this is a mistake - we need to keep some of the data for cross-validation in order to understand accuracy 
 - Genaration of ROC curves to understand false-positives / false-negatives
+- Would look into serving multiple implementations of spam classification algos instead of relying on one algorithm
+- Would try to narrow the feature space of the bayes classifier to provide better accuracy
+- Would implement a labeling feedback loop for the user to boost learning
 - System needs at least two (2) servers providing email classification in order to provide absolute minimum of reliability; it would be nice to have 'responsive' auto-scaler that spins up (and retires) new instances as needed
