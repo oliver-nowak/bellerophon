@@ -4,7 +4,7 @@ spam email filtering MVP
 
 ##Characteristics of MVP
 - Rails app deployed on Amazon Elastic Beanstalk
-- MySQL persistence layer
+- MySQL persistence layer (Amazon RDS)
 - Delayed_Job job scheduler / background processor
 - Naive Bayes Spam classifier, written in python
 
@@ -24,6 +24,6 @@ spam email filtering MVP
 - Current model is trained using all available data - this is a mistake - we need to keep some of the data for cross-validation in order to understand accuracy 
 - Genaration of ROC curves to understand false-positives / false-negatives
 - Would look into serving multiple implementations of spam classification algos instead of relying on one algorithm
-- Would try to narrow the feature space of the bayes classifier to provide better accuracy
-- Would implement a labeling feedback loop for the user to boost learning
+- Would try to narrow the feature space of the bayes classifier to provide better accuracy 
+- Would implement a labeling feedback loop for the user to boost supervised learning
 - System needs at least two (2) servers providing email classification in order to provide absolute minimum of reliability; it would be nice to have 'responsive' auto-scaler that spins up (and retires) new instances as needed
