@@ -13,6 +13,7 @@ spam email filtering MVP
 ##TODO / Issues
 - Needs nicer looking UI (bootstrap)
 - Python code needs to be PEP-08 compliant
+- Refactor Naive-Bayes classifier to use faster implementation in sklearn library
 - Tests!
 - API needs improvement, depending on user requirements
 - Would consider swapping out MySQL for MongoDB depending on user requirements
